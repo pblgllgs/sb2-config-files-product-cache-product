@@ -13,6 +13,10 @@ zuul:
       path: /api/1.0/product/**
       serviceId: product-service
       strip-prefix: false
+    product-cache-service:
+      path: /api/1.0/product-cache/**
+      serviceId: product-cache-service
+      strip-prefix: false
 
 server:
   port: 8762
