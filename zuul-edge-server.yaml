@@ -1,6 +1,17 @@
 spring:
   application:
     name: zuul-edge-server
+  cloud:
+    gateway:
+      routes:
+        - id: product-service
+          uri: lb://product-service/
+          predicates:
+            - Path=/api/1.0/product/**
+        - id: product-cache-service
+          uri: lb://product-cache-service/
+          predicates:
+            - Path=/api/1.0/product-cache/**
 
 ---
 spring:
