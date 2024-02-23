@@ -18,24 +18,25 @@ server:
 ---
 
 spring:
-  config:
-    activate:
-      on-profile: localhost
   cache:
     type: redis
-  redis:
-    host: localhost
-    port: 6379
+  config:
+    activate:
+      on-profile: stage
+  data:
+    redis:
+      host: redis
+      port: 6379
 
 feign:
   product-service:
     name: product-service
-    url: http://localhost:8762
+    url: http://zuul-edge-server:8762
 
 eureka:
   client:
     service-url:
-      defaultZone: http://localhost:8761/eureka
+      defaultZone: http://eureka-server:8761/eureka
   instance:
     instance-id: ${spring.application.name}:${random.uuid}
     prefer-ip-address: true
@@ -44,14 +45,15 @@ eureka:
 ---
 
 spring:
+  cache:
+    type: redis
   config:
     activate:
       on-profile: stage
-  cache:
-    type: redis
-  redis:
-    host: redis
-    port: 6379
+  data:
+    redis:
+      host: redis
+      port: 6379
 
 feign:
   product-service:
