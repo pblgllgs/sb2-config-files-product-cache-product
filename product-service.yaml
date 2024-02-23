@@ -5,9 +5,6 @@ spring:
     active: localhost
   main:
     allow-bean-definition-overriding: true
-  cloud:
-    config:
-      uri: http://localhost:8888
 
 info:
   component: Product Service
@@ -21,7 +18,9 @@ logging:
 ---
 
 spring:
-  profiles: localhost
+  config:
+    activate:
+      on-profile: localhost
   jpa:
     hibernate:
       ddl-auto: update
@@ -42,7 +41,9 @@ eureka:
 ---
 
 spring:
-  profiles: stage
+  config:
+    activate:
+      on-profile: stage
   jpa:
     hibernate:
       ddl-auto: update
